@@ -8,6 +8,12 @@
 
 Is the place you live any good? Answer 24 questions and find out, with the book's own reasoning behind every answer. Condensed from *Good Fengshui* by Eva Wong.
 
+## Screenshots
+
+<p>
+<img src="screenshots/homeqi-1.jpg" alt="Homeqi">
+</p>
+
 ## What it does
 
 The book is Form School. Its chapters are already checklists. The **Assess** tab turns them into 24 questions across the four layers the book works through, from the outside in:
