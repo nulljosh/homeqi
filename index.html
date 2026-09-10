@@ -115,6 +115,10 @@ body[data-view="read"] #assess-view { display:none; }
 
 /* assessment */
 .summary { border:1px solid var(--border2); border-radius:var(--radius-md); padding:1.25rem 1.25rem 1rem; margin-bottom:2.5rem; }
+.prop-bar { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+.prop-bar select { font-family:var(--font-body); font-size:0.8125rem; padding:0.3rem 0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border2); background:var(--bg); color:var(--text); flex:1 1 auto; min-width:8rem; }
+.prop-bar button { font-family:var(--font-body); font-size:0.75rem; color:var(--text3); background:none; border:1px solid var(--border2); border-radius:var(--radius-pill); padding:0.3rem 0.7rem; cursor:pointer; }
+.prop-bar button:hover { color:var(--text2); border-color:var(--text3); }
 .summary-head { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; margin-bottom:1rem; }
 .summary-head h2 { font-family:var(--font-display); font-size:1rem; font-weight:600; color:var(--text); }
 .summary-head button {
@@ -240,6 +244,12 @@ function fit(){i.style.transform='scale('+(i.parentNode.clientWidth/i.offsetWidt
 
     <section id="assess-view" role="tabpanel" aria-labelledby="tab-assess">
       <div class="summary">
+        <div class="prop-bar">
+          <select id="prop-picker" aria-label="Property"></select>
+          <button type="button" id="prop-new">+ Add place</button>
+          <button type="button" id="prop-rename">Rename</button>
+          <button type="button" id="prop-delete">Delete</button>
+        </div>
         <div class="summary-head">
           <h2 id="summary-title">Nothing answered yet</h2>
           <button type="button" id="reset">Start over</button>
@@ -409,15 +419,52 @@ var QUESTIONS = [
 
 /* ---------- state ---------- */
 
-var STORE_KEY = 'homeqi.assessment';
-var answers = load();
+var STORE_KEY = 'homeqi.properties';
+var props = loadProps();
+var answers = props.list[props.current].answers;
 
-function load() {
-  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
-  catch (e) { return {}; }
+// ponytail: migrates the old single-assessment key so nobody loses data.
+function loadProps() {
+  try {
+    var p = JSON.parse(localStorage.getItem(STORE_KEY));
+    if (p && p.list && p.list[p.current]) return p;
+  } catch (e) {}
+  var legacy = {};
+  try { legacy = JSON.parse(localStorage.getItem('homeqi.assessment')) || {}; } catch (e) {}
+  var id = 'p1';
+  return { current: id, list: { p1: { name: 'My place', answers: legacy } } };
 }
 function save() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(answers)); } catch (e) {}
+  props.list[props.current].answers = answers;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(props)); } catch (e) {}
+}
+function switchProp(id) {
+  props.current = id;
+  answers = props.list[id].answers;
+  save();
+  render();
+  renderPropPicker();
+}
+function newProp() {
+  var name = prompt('Name this place:', 'New place');
+  if (!name) return;
+  var id = 'p' + Date.now();
+  props.list[id] = { name: name, answers: {} };
+  switchProp(id);
+}
+function renameProp() {
+  var name = prompt('Rename this place:', props.list[props.current].name);
+  if (!name) return;
+  props.list[props.current].name = name;
+  save();
+  renderPropPicker();
+}
+function deleteProp() {
+  var ids = Object.keys(props.list);
+  if (ids.length < 2) return;
+  if (!confirm('Delete "' + props.list[props.current].name + '"?')) return;
+  delete props.list[props.current];
+  switchProp(Object.keys(props.list)[0]);
 }
 
 // counts only answers that match the question's concerning value; 'unsure' never counts
@@ -569,10 +616,29 @@ function render() {
 }
 
 document.getElementById('reset').addEventListener('click', function() {
+  if (!confirm('Clear all answers for "' + props.list[props.current].name + '"?')) return;
   answers = {};
   save();
   render();
 });
+
+var propPicker = document.getElementById('prop-picker');
+function renderPropPicker() {
+  propPicker.textContent = '';
+  Object.keys(props.list).forEach(function(id) {
+    var opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = props.list[id].name;
+    if (id === props.current) opt.selected = true;
+    propPicker.appendChild(opt);
+  });
+  document.getElementById('prop-delete').disabled = Object.keys(props.list).length < 2;
+}
+propPicker.addEventListener('change', function() { switchProp(this.value); });
+document.getElementById('prop-new').addEventListener('click', newProp);
+document.getElementById('prop-rename').addEventListener('click', renameProp);
+document.getElementById('prop-delete').addEventListener('click', deleteProp);
+renderPropPicker();
 
 /* ---------- tabs ---------- */
 
