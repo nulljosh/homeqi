@@ -538,6 +538,8 @@ function render() {
 
   findingsEl.hidden = flagged.length === 0;
   findingsList.textContent = '';
+  // Siting concerns (the layer the book treats as hardest to fix after move-in)
+  // float to the top of the findings list; everything else keeps question order.
   flagged.sort(function(a, b) { return (SITING[b.q.layer] ? 1 : 0) - (SITING[a.q.layer] ? 1 : 0); });
   flagged.forEach(function(x) {
     var li = document.createElement('li');
