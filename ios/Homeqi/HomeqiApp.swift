@@ -4,7 +4,12 @@ import SwiftUI
 struct HomeqiApp: App {
     var body: some Scene {
         WindowGroup {
-            ChapterListView()
+            TabView {
+                AssessmentView()
+                    .tabItem { Label("Assess", systemImage: "checklist") }
+                ChapterListView()
+                    .tabItem { Label("Read", systemImage: "book") }
+            }
             .shareApp("https://homeqi.heyitsmejosh.com")
         }
     }

@@ -9,17 +9,23 @@
 /* Begin PBXBuildFile section */
 		183827FFD8D5B9BF714B3FEA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62192728D5072A8DC2AA56C2 /* Models.swift */; };
 		342F7FF946A6870309C9B387 /* ChapterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B710B0883F590683C7FA833 /* ChapterListView.swift */; };
+		5342D9EC139AD88310C2895B /* AssessmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59DBA7DDB35BA1D358A30B6 /* AssessmentData.swift */; };
+		7182E7DDC1A0FA60D2D3D77B /* AssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EBB4AE691225C8135B577 /* AssessmentView.swift */; };
 		8FE0620106BCA031F3EE7402 /* content.md in Resources */ = {isa = PBXBuildFile; fileRef = 91BE3E36227474CF1EE4C905 /* content.md */; };
 		A022AC77D43741FADC12AB79 /* HomeqiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750CC09032959ACB824239D2 /* HomeqiApp.swift */; };
+		DAA0D251405DB5A31D69DDA9 /* PropertyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672D2292D0A03E7AA6F47A64 /* PropertyStore.swift */; };
 		EE17398B7A431254556D31DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00AE972FDA27D0E1002AEB4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3B710B0883F590683C7FA833 /* ChapterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListView.swift; sourceTree = "<group>"; };
 		62192728D5072A8DC2AA56C2 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		672D2292D0A03E7AA6F47A64 /* PropertyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStore.swift; sourceTree = "<group>"; };
 		750CC09032959ACB824239D2 /* HomeqiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeqiApp.swift; sourceTree = "<group>"; };
+		7C9EBB4AE691225C8135B577 /* AssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentView.swift; sourceTree = "<group>"; };
 		91BE3E36227474CF1EE4C905 /* content.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = content.md; sourceTree = "<group>"; };
 		A00AE972FDA27D0E1002AEB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A59DBA7DDB35BA1D358A30B6 /* AssessmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentData.swift; sourceTree = "<group>"; };
 		C0B3F93C430B449AA068AF23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DA7F0E557A57B438893D3176 /* Homeqi.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Homeqi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -60,10 +66,13 @@
 		70C75404134ACC343F039E10 /* Homeqi */ = {
 			isa = PBXGroup;
 			children = (
+				A59DBA7DDB35BA1D358A30B6 /* AssessmentData.swift */,
+				7C9EBB4AE691225C8135B577 /* AssessmentView.swift */,
 				A00AE972FDA27D0E1002AEB4 /* Assets.xcassets */,
 				750CC09032959ACB824239D2 /* HomeqiApp.swift */,
 				C0B3F93C430B449AA068AF23 /* Info.plist */,
 				62192728D5072A8DC2AA56C2 /* Models.swift */,
+				672D2292D0A03E7AA6F47A64 /* PropertyStore.swift */,
 				50BA6C7E31901056E49C1763 /* Resources */,
 				3214F269F82B7193D05ACD6D /* Views */,
 			);
@@ -142,9 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5342D9EC139AD88310C2895B /* AssessmentData.swift in Sources */,
+				7182E7DDC1A0FA60D2D3D77B /* AssessmentView.swift in Sources */,
 				342F7FF946A6870309C9B387 /* ChapterListView.swift in Sources */,
 				A022AC77D43741FADC12AB79 /* HomeqiApp.swift in Sources */,
 				183827FFD8D5B9BF714B3FEA /* Models.swift in Sources */,
+				DAA0D251405DB5A31D69DDA9 /* PropertyStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
