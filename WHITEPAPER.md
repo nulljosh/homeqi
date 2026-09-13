@@ -2,9 +2,11 @@
 
 **v1.0** | August 2026
 
-Is the place you live any good? Eva Wong's *Good Fengshui*, condensed into a
-reader and a 24-question assessment that work offline. Web plus a native SwiftUI
-iOS app.
+Is the place you live any good? A book answers that question but takes hours to
+read and offers no way to check a specific room against it. Homeqi condenses
+Eva Wong's *Good Fengshui* into a reader and a 24-question assessment that work
+offline, so the same reference material a book gives you becomes something you
+can actually check your home against. Web plus a native SwiftUI iOS app.
 
 ## Problem
 
@@ -15,9 +17,11 @@ trip, or a loading state. The whole book is small enough to ship as text, so it 
 ## Content model
 
 `content.md` is the single source of truth: one Markdown file, chapters delimited by
-headings. The web reader and the iOS app both parse that same file, so a content
-edit is one commit and both platforms move together. There is no CMS, no database,
-and no content API.
+headings, because the content is a finished book, not something that needs editorial
+tooling built around it. The web reader and the iOS app both parse that same file, so a
+content edit is one commit and both platforms move together. There is no CMS, no
+database, and no content API, since none of that machinery earns its keep for static
+text that rarely changes.
 
 ## Web
 
@@ -29,8 +33,9 @@ No build step and no framework.
 ## iOS
 
 `ios/Homeqi` is a native SwiftUI app: a chapter list backed by `content.md`
-bundled into the app, rendered inline. No backend, so it works fully offline and has
-no failure mode beyond the app itself.
+bundled into the app, rendered inline. No backend, so it works fully offline
+(the whole point, since this gets opened in a room being assessed, not
+necessarily somewhere with signal) and has no failure mode beyond the app itself.
 
 ## Design decisions
 
