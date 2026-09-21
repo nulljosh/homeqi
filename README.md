@@ -8,6 +8,8 @@
 
 Is the place you live any good? Answer 24 questions and find out, with the book's own reasoning behind every answer. Condensed from *Good Fengshui* by Eva Wong.
 
+<img src="progress.svg" width="460">
+
 ## Screenshots
 
 <p>
