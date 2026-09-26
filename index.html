@@ -12,32 +12,23 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://homeqi.heyitsmejosh.com">
 <link rel="icon" href="icon.svg">
+<meta name="theme-color" content="#f5f0e4">
 <style>
 @import url("https://heyitsmejosh.com/tokens.css");
 
 :root {
-  --accent: #C9784A;
-  --link: #a35a2f;
-  --accent-soft: #faf0e8;
-  --bg: #ffffff;
-  --bg2: #f7f7f8;
-  --text: #1c1d22;
-  --text2: #5c5f6a;
-  --border: #e6e7ea;
+  --accent: var(--clay);
+  --link: var(--clay-deep);
   --font-body: -apple-system, system-ui, "Inter", "Segoe UI", sans-serif;
   --font-display: var(--font-body);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121316; --bg2: #1a1b1f; --link: #C9784A;
-    --text: #ececf0; --text2: rgba(236,236,240,0.62);
-    --border: rgba(236,236,240,0.12); --accent-soft: #221913;
+    --link: var(--clay);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121316; --bg2: #1a1b1f; --link: #C9784A;
-  --text: #ececf0; --text2: rgba(236,236,240,0.62);
-  --border: rgba(236,236,240,0.12); --accent-soft: #221913;
+  --link: var(--clay);
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
