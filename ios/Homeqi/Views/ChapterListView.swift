@@ -9,6 +9,7 @@ struct ChapterListView: View {
                 NavigationLink(chapter.title, value: chapter.id)
             }
             .navigationTitle("Homeqi")
+            .navigationSplitViewColumnWidth(min: 240, ideal: 300)
         } detail: {
             if let chapter = ContentStore.chapters.first(where: { $0.id == selection }) {
                 ChapterDetailView(chapter: chapter)
@@ -32,7 +33,9 @@ struct ChapterDetailView: View {
             .padding()
         }
         .navigationTitle(chapter.title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 
     private var blocks: [String] {

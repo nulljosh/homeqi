@@ -17,7 +17,7 @@ struct AssessmentView: View {
             }
             .navigationTitle(store.current.name)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     Menu {
                         ForEach(store.list) { p in
                             Button(p.name) { store.currentID = p.id }
